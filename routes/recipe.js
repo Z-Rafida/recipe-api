@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { RecipeModel } from "../models/recipe.js";
 
 // create a router
 const recipeRouter = Router();
@@ -9,7 +10,9 @@ recipeRouter.get('/recipes', (req, res) =>{
 });
 
 // add recipe
-recipeRouter.post('/recipes', (req, res) =>{
+recipeRouter.post('/recipes', async (req, res) =>{
+    // add reipe to database
+    await RecipeModel.create(req.body);
     res.json('Recipe added');
 });
 
@@ -22,6 +25,10 @@ recipeRouter.patch('/recipes/:id', (req, res) =>{
 recipeRouter.delete('/recipes/:id', (req, res) =>{
     res.json(`Recipe with Id ${req.params.id} deleted`);
 });
+
+recipeRouter.get('/recipes/:id', (req, res) => {
+    res.json(`Recipe with Id ${req.params.id} obtained`);
+})
 
 // export router
 export default recipeRouter;
