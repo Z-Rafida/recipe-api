@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import recipeRouter from "./routes/recipe.js";
+import categoryRouter from "./routes/categoryRouter.js";
 
 // connect to database
 await mongoose.connect (process.env.MONGO_URL);
@@ -27,10 +28,13 @@ app.delete('/back', (req, res) =>{
 
 // use routes
 app.use(recipeRouter);
+app.use(categoryRouter);
+
 
 // listen for incoming request
+const port = process.env.PORT || 3000;
 app.listen (3000, () => {
-    console.log('App listening on port 3000')
+    console.log(`App listening on port ${port}`)
 });
 
 
