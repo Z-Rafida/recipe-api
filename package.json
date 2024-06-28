@@ -12,7 +12,8 @@
   "dependencies": {
     "D": "^1.0.0",
     "express": "^4.19.2",
-    "mongoose": "^8.4.4"
+    "mongoose": "^8.4.4",
+    "normalize-mongoose": "^1.0.0"
   },
   "description": "",
   "devDependencies": {

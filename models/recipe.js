@@ -1,9 +1,17 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model, Types} from "mongoose";
+import normalize from "normalize-mongoose";
 
 const recipeSchema = new Schema({
     name:{type: String, unique: true, required: true },
-    ingredients: [{type: String}]
+    categoryId: {type: Types.ObjectId, ref: 'Category', required: true},
+    description: {type:String, unique: true, required: true},
+    ingredients: [{type: String}],
+    image: {type: String, required: true},
+    favorite: {type: Boolean, default: false}
+}, {
+    timestamps: true
 });
 
+recipeSchema.plugin(normalize)
 
 export const RecipeModel = model('Recipe', recipeSchema);
