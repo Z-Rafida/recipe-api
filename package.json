@@ -11,13 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@reis/mongoose-to-json": "^3.0.0",
     "D": "^1.0.0",
     "express": "^4.19.2",
+    "express-oas-generator": "^1.0.46",
     "mongoose": "^8.4.4",
     "normalize-mongoose": "^1.0.0"
   },
-  "description": "",
   "devDependencies": {
     "nodemon": "^3.1.4"
-  }
+  },
+  "description": ""
 }
