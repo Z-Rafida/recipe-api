@@ -14,7 +14,11 @@ export const getCategories = async (req, res, next) =>{
 export const postCategory = async (req, res, next) => {
     try {
         // post a category into the database
-        const newCategory = await CategoryModel.create(req.body);
+        const newCategory = await CategoryModel.create({
+        ...req.body,
+        image: req.file.filename,
+    });
+
         // return a response
         res.status(201).json(newCategory);
     } catch (error) {
