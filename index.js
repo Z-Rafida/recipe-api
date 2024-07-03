@@ -1,8 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import expressOasGenerator from "express-oas-generator";
 import recipeRouter from "./routes/recipe.js";
 import categoryRouter from "./routes/categoryRouter.js";
+
 
 // connect to database
 await mongoose.connect (process.env.MONGO_URL);
@@ -16,10 +18,11 @@ expressOasGenerator.handleResponses(app, {
     mongooseModels : mongoose.modelNames(),
 });
 
+
 // apply middlewares
 app.use(express.json());
 app.use(express.static('uploads'));
-
+app.use(cors());
 // define routes
 app.get('/', (req, res)=>{
     res.json('Welcome Home');

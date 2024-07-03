@@ -5,7 +5,7 @@ export const getRecipes =  async (req, res, next) =>{
     // get all recipes from the database
     try {
         // get query params
-        const {limit,filter, skip} = req.guery;
+        const {limit,filter, skip,} = req.query;
         // fet all recipes from database
         const allRecipes = await RecipeModel
         .find(filter)
