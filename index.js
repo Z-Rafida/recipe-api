@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import expressOasGenerator from "express-oas-generator";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import recipeRouter from "./routes/recipe.js";
 import categoryRouter from "./routes/categoryRouter.js";
 import userRouter from "./routes/user.js";
@@ -28,21 +29,11 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    // cookie: { secure: true }
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL
+    })
 }));
-
-// define routes
-app.get('/', (req, res) => {
-    res.json('Welcome Home');
-});
-
-app.post('/login', (req, res) => {
-    res.json('Login successful');
-});
-
-app.delete('/back', (req, res) => {
-    res.json('Back to previous page');
-});
 
 // use routes
 app.use(userRouter);
